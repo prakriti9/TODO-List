@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="todo.css">
+    
+    <script
+      src="https://kit.fontawesome.com/8e6ed633d4.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <h2>Todo List</h2>
+            <input type="text" placeholder="Add items....." id = "inval"/>
+            <button onclick="getval()" id ="but">Add</button>
+            <div class="res">
+                <ul class="ordered">
+                    <!-- <li>
+                        Task
+                        <button><i class="fa fa-edit"></i></button>
+                        <button><i class="fa fa-trash"></i></button>
+                    </li> -->
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        const input = document.querySelector('input');
+        const btn = document.querySelector('.main > button');
+        btn.addEventListener('click', addlist);
+        function addlist(e){
+            const ordered = document.querySelector('.ordered');
+
+            const newli = document.createElement('li')
+            const edit = document.createElement('button')
+            const del = document.createElement('button')
+
+            del.innerHTML = '<i class="fa fa-trash"></i>';
+            edit.innerHTML = '<i class="fa fa-edit"></i>';
+
+            if(input.value !== '')
+            {
+                newli.textContent = input.value;
+                input.value = '';
+                ordered.appendChild(newli)
+                newli.appendChild(edit)
+                newli.appendChild(del)
+            }
+            edit.addEventListener('click',function(){
+                const parent = this.parentNode;
+                input.value = parent.textContent;
+                parent.remove();
+                console.log(parent)
+                
+            });
+            del.addEventListener('click',function(){
+                const parent = this.parentNode;
+                parent.remove();
+            });
+        }
+        console.log(inval);
+    </script>
+</body>
+</html>
